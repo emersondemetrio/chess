@@ -1,5 +1,16 @@
 import React from 'react';
+import './Container.css';
 
-export default Container = () => {
-	return <div></div>;
+class Container extends React.Component {
+	render() {
+		return (
+			<button
+				key={"button" + this.props.name}
+				className="square item">
+				{this.props.name}
+			</button>
+		);
+	}
 };
+
+export default Container;
