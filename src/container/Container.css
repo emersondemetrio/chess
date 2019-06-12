@@ -1,8 +1,12 @@
 .square {
 	padding: 10px;
-	min-width: 72px;
-    max-width: 72px;
-	background: #eee;
+	min-width: 50px;
+	max-width: 50px;
+	background: #fff;
 	border: solid 1px #ddd;
 	float: left;
+}
+
+.square.even {
+	background: #000;
 }

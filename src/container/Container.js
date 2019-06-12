@@ -4,11 +4,11 @@ import './Container.css';
 class Container extends React.Component {
 	render() {
 		return (
-			<button
-				key={"button" + this.props.name}
-				className="square item">
-				{this.props.name}
-			</button>
+			<div
+				key={"div" + this.props.position}
+				className={'square item ' + (this.props.position % 2 !== 0 ? 'even' : '')}>
+				{this.props.position}
+			</div>
 		);
 	}
 };

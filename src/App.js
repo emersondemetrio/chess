@@ -7,10 +7,18 @@ class App extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.list = Array.from(Array(64), (_d, id) => ({
-			id,
-			name: `item-${id}`
-		}));
+		const letters = 'abcdefgh'.split('');
+		const numbers = '12345678'.split('').map(v => parseInt(v));
+
+		this.table = numbers
+			.map(number => letters
+				.map(letter => ({
+					x: number,
+					y: letter,
+					xy: `[${x}, ${y}]`
+				})
+				)
+			);
 	}
 
 	render() {
@@ -18,11 +26,13 @@ class App extends React.Component {
 			<div className="App">
 				<h3>Chess!</h3>
 				<section className="container stretch">
-					{this.list.map(item =>(
-						<Container
-							key={item.id}
-							name={1 + item.id}></Container>
-					))}
+					{this.table.map(row => {
+						row.map(item => {
+							return <Container
+								key={item.xy}
+								name={item.xy}></Container>
+						})
+					})}
 				</section>
 			</div>
 		);
