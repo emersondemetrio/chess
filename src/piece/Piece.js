@@ -1,6 +1,8 @@
 import React from 'react';
 import './Piece.css';
 
+import ReactSVG from 'react-svg'
+
 class Piece extends React.Component {
 	getClassName = () => {
 		return [
@@ -16,13 +18,7 @@ class Piece extends React.Component {
 
 	render() {
 		return (
-			<img
-				alt={this.props.name}
-				key={this.props.name}
-				src={this.getImage()}
-				className={this.getClassName()}>
-				{this.props.rowItem}
-			</img>
+			<ReactSVG src={this.getImage()} />
 		);
 	}
 };

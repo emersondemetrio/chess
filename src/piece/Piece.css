@@ -1,4 +1,4 @@
 /** silence is gold **/
-.svg path {
-	transition:0.3s all !important;
- }
+svg {
+	fill: red;
+}
