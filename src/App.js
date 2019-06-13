@@ -18,17 +18,39 @@ class App extends React.Component {
 					xy: `[${cNumber}, ${letter}]`
 				}))
 			);
+		const br1 = {
+			color: 'black',
+			name: 'rook'
+		};
+
+		const br2 = { ...br1 };
+		const wr1 = { ...br1, color: 'white' };
+		const wr2 = { ...wr1 };
+
+		const firstState = [
+			[br1, null, null, null, null, null, null, br2],
+			[null, null, null, null, null, null, null, null],
+			[null, null, null, null, null, null, null, null],
+			[null, null, null, null, null, null, null, null],
+			[null, null, null, null, null, null, null, null],
+			[null, null, null, null, null, null, null, null],
+			[null, null, null, null, null, null, null, null],
+			[wr1, null, null, null, null, null, null, wr2],
+		];
+
+		this.firstState = firstState;
 	}
 
 	getBoard = () =>
 		this.table.map((row, rowIndex) => (
-			row.map((item, itemIndex) => (
+			row.map((item, lineIndex) => (
 				<BoardPiece
 					key={item.xy}
 					name={item.xy}
-					isPlayable={itemIndex % 2 === 0}
-					rowItem={`${rowIndex}, ${itemIndex}`}
-					indexClass={(itemIndex + rowIndex) % 2 === 0 ? 'even' : 'odd'}></BoardPiece>
+					piece={this.firstState[rowIndex][lineIndex]}
+					isPlayable={lineIndex % 2 === 0}
+					rowItem={`${rowIndex}, ${lineIndex}`}
+					indexClass={(lineIndex + rowIndex) % 2 === 0 ? 'even' : 'odd'}></BoardPiece>
 			))
 		));
 
