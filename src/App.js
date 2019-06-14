@@ -1,84 +1,28 @@
 import React from 'react';
-import uuid from 'uuid/v4';
-
 import './App.css';
 
-import BoardPiece from './board/BoardPiece';
+import {
+	rawBoard,
+	rawLetters,
+	rawNumbers
+} from './Raw/Board'
+import { getFirstState } from './Raw/Utils';
+
+import BoardPiece from './Board/BoardPiece/BoardPiece';
+import LettersContainer from './Board/LettersContainer/LettersContainer';
+import NumbersContainer from './Board/NumbersContainer/NumbersContainer';
 
 class App extends React.Component {
 	constructor(props) {
 		super(props);
 
-		const letters = 'abcdefgh'.split('');
-		const numbers = '12345678'.split('').map(v => parseInt(v)).reverse();
+		this.table = rawBoard;
+		const firstState = getFirstState();
 
-		this.table = numbers
-			.map(cNumber => letters
-				.map(letter => ({
-					x: cNumber,
-					y: letter,
-					xy: `[${cNumber}, ${letter}]`
-				}))
-			);
-
-		const rook = {
-			name: 'rook',
-			color: 'black',
-			xy: []
-		};
-
-		const bishop = {
-			color: 'black',
-			name: 'bishop',
-			xy: []
-		};
-
-		const horse = {
-			name: 'horse',
-			color: 'black',
-			xy: []
-		};
-
-		const queen = {
-			name: 'queen',
-			color: 'black',
-			xy: []
-		};
-
-		const king = {
-			name: 'king',
-			color: 'black',
-			xy: []
-		};
-
-		const pawns = Array.from(Array(8), _ => ({
-			name: 'pawn',
-			color: 'black',
-			xy: []
-		}));
-
-		const firstState = [
-			[rook, bishop, horse, king, queen, horse, bishop, rook],
-			pawns,
-			Array.from(Array(8), _ => null),
-			Array.from(Array(8), _ => null),
-			Array.from(Array(8), _ => null),
-			Array.from(Array(8), _ => null),
-			pawns.map(p => ({ ...p, color: 'white' })),
-			[
-				{ ...rook, color: 'white' },
-				{ ...horse, color: 'white' },
-				{ ...bishop, color: 'white' },
-				{ ...king, color: 'white' },
-				{ ...queen, color: 'white' },
-				{ ...bishop, color: 'white' },
-				{ ...horse, color: 'white' },
-				{ ...rook, color: 'white' }
-			],
-		].map(row => row.map(item => item !== null ? { ...item, id: uuid() } : null));
-
-		console.log('firstState', firstState);
 		this.firstState = firstState;
+		this.state = {
+			board: this.getBoard()
+		};
 	}
 
 	getBoard = () =>
@@ -101,10 +45,17 @@ class App extends React.Component {
 		return (
 			<div className="App">
 				<h3>Chess!</h3>
+				<div>
+					<section className="board container stretch">
+						<LettersContainer letters={rawLetters} />
+						{/* <NumbersContainer numbers={rawNumbers} /> */}
+						{this.state.board}
+						{/* <NumbersContainer numbers={rawNumbers} /> */}
+						<LettersContainer letters={rawLetters} />
+					</section>
+				</div>
+
 				<pre><code id="k"></code></pre>
-				<section className="board container stretch">
-					{this.getBoard()}
-				</section>
 			</div>
 		);
 	}

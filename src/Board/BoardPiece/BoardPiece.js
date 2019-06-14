@@ -1,6 +1,6 @@
 import React from 'react';
 import './BoardPiece.css';
-import Piece from '../piece/Piece';
+import Piece from '../../piece/Piece';
 
 class BoardPiece extends React.Component {
 	getClassName = () => {
@@ -13,7 +13,7 @@ class BoardPiece extends React.Component {
 	}
 
 	onClick = (piece) => {
-		console.log('piece', piece);
+		// console.log('piece', piece);
 	}
 
 	render() {
