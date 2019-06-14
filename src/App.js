@@ -1,4 +1,6 @@
 import React from 'react';
+import uuid from 'uuid/v4';
+
 import './App.css';
 
 import BoardPiece from './board/BoardPiece';
@@ -58,10 +60,10 @@ class App extends React.Component {
 		const firstState = [
 			[rook, bishop, horse, king, queen, horse, bishop, rook],
 			pawns,
-			[null, null, null, null, null, null, null, null],
-			[null, null, null, null, null, null, null, null],
-			[null, null, null, null, null, null, null, null],
-			[null, null, null, null, null, null, null, null],
+			Array.from(Array(8), _ => null),
+			Array.from(Array(8), _ => null),
+			Array.from(Array(8), _ => null),
+			Array.from(Array(8), _ => null),
 			pawns.map(p => ({ ...p, color: 'white' })),
 			[
 				{ ...rook, color: 'white' },
@@ -73,8 +75,9 @@ class App extends React.Component {
 				{ ...horse, color: 'white' },
 				{ ...rook, color: 'white' }
 			],
-		];
+		].map(row => row.map(item => item !== null ? { ...item, id: uuid() } : null));
 
+		console.log('firstState', firstState);
 		this.firstState = firstState;
 	}
 
