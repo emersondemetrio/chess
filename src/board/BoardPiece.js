@@ -18,9 +18,7 @@ class BoardPiece extends React.Component {
 				key={this.props.name}
 				className={this.getClassName()}>
 				{this.props.piece !== null ? (
-					<Piece
-						color={this.props.piece.color}
-						name={this.props.piece.name}></Piece>
+					<Piece reference={this.props.piece}></Piece>
 				) : null}
 			</div>
 		);
