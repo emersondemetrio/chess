@@ -91,7 +91,7 @@ class App extends React.Component {
 					key={item.xy}
 					name={item.xy}
 					piece={piece}
-					isPlayable={lineIndex % 2 === 0}
+					isPlayable={false}
 					rowItem={`${rowIndex}, ${lineIndex}`}
 					indexClass={(lineIndex + rowIndex) % 2 === 0 ? 'even' : 'odd'}></BoardPiece>
 			})
