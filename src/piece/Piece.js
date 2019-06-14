@@ -4,12 +4,11 @@ import './Piece.css';
 import ReactSVG from 'react-svg'
 
 class Piece extends React.Component {
-	getClassName = () => {
-		return [
-			(this.props.reference.isPlayable ? 'playable' : ''),
-			this.props.reference.indexClass,
-		].join(' ');
-	};
+
+	className = [
+		(this.props.reference.isPlayable ? 'playable' : ''),
+		this.props.reference.indexClass,
+	].join(' ');
 
 	getImage = () => {
 		return `${this.props.reference.color}-${this.props.reference.name}.svg`;
@@ -19,12 +18,19 @@ class Piece extends React.Component {
 		return `${this.props.reference.xy} - ${this.props.reference.name}`;
 	}
 
+	innerClick = () => {
+		this.props.pieceClick(this.props.reference)
+		this.className = 'kkk';
+		document.getElementById("k").innerHTML = JSON.stringify(this.props.reference, null, 2);
+	}
+
 	render() {
 		return (
 			<ReactSVG
+				onMouseEnter={e => this.innerClick()}
 				src={this.getImage()}
 				title={this.getName()}
-				className={this.getClassName()} />
+				className={this.className} />
 		);
 	}
 };

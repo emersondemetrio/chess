@@ -12,13 +12,19 @@ class BoardPiece extends React.Component {
 		].join(' ');
 	}
 
+	onClick = (piece) => {
+		console.log('piece', piece);
+	}
+
 	render() {
 		return (
 			<div
 				key={this.props.name}
 				className={this.getClassName()}>
 				{this.props.piece !== null ? (
-					<Piece reference={this.props.piece}></Piece>
+					<Piece
+						pieceClick={this.onClick}
+						reference={this.props.piece}></Piece>
 				) : null}
 			</div>
 		);

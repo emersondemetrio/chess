@@ -19,43 +19,60 @@ class App extends React.Component {
 				}))
 			);
 
-		const blackRook1 = {
-			color: 'black',
+		const rook = {
 			name: 'rook',
+			color: 'black',
 			xy: []
 		};
 
-		const blackRook2 = { ...blackRook1 };
-		const whiteRook1 = { ...blackRook1, color: 'white' };
-		const whiteRook2 = { ...whiteRook1 };
+		const bishop = {
+			color: 'black',
+			name: 'bishop',
+			xy: []
+		};
 
-		const blackBishop1 = { name: 'bishop', color: 'black', xy: [] };
-		const blackBishop2 = { ...blackBishop1 };
-
-		const whiteBishop1 = { ...blackBishop1, color: 'white', xy: [] };
-		const whiteBishop2 = { ...whiteBishop1, xy: [] };
-
-		const blackPawns = Array.from(Array(8), () => ({
-			name: 'pawn',
+		const horse = {
+			name: 'horse',
 			color: 'black',
 			xy: []
-		}));
+		};
 
-		const whitePawns = Array.from(Array(8), () => ({
+		const queen = {
+			name: 'queen',
+			color: 'black',
+			xy: []
+		};
+
+		const king = {
+			name: 'king',
+			color: 'black',
+			xy: []
+		};
+
+		const pawns = Array.from(Array(8), _ => ({
 			name: 'pawn',
-			color: 'white',
+			color: 'black',
 			xy: []
 		}));
 
 		const firstState = [
-			[blackRook1, blackBishop1, null, null, null, null, blackBishop2, blackRook2],
-			blackPawns,
+			[rook, bishop, horse, king, queen, horse, bishop, rook],
+			pawns,
 			[null, null, null, null, null, null, null, null],
 			[null, null, null, null, null, null, null, null],
 			[null, null, null, null, null, null, null, null],
 			[null, null, null, null, null, null, null, null],
-			whitePawns,
-			[whiteRook1, whiteBishop1, null, null, null, null, whiteBishop2, whiteRook2],
+			pawns.map(p => ({ ...p, color: 'white' })),
+			[
+				{ ...rook, color: 'white' },
+				{ ...horse, color: 'white' },
+				{ ...bishop, color: 'white' },
+				{ ...king, color: 'white' },
+				{ ...queen, color: 'white' },
+				{ ...bishop, color: 'white' },
+				{ ...horse, color: 'white' },
+				{ ...rook, color: 'white' }
+			],
 		];
 
 		this.firstState = firstState;
@@ -81,6 +98,7 @@ class App extends React.Component {
 		return (
 			<div className="App">
 				<h3>Chess!</h3>
+				<pre><code id="k"></code></pre>
 				<section className="board container stretch">
 					{this.getBoard()}
 				</section>
