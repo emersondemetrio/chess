@@ -1,14 +1,16 @@
 import React from 'react';
 import './LettersContainer.css';
 
+import { Flex, Box } from 'reflexbox';
+
 class LettersContainer extends React.Component {
 	render() {
 		return (
-			<>
-				<div className="guide item"></div>
-				{this.props.letters.map((v, k) => <div className="guide item" key={k}>{v}</div>)}
-				<div className="guide item"></div>
-			</>
+			<Flex>
+				<Box w={1 / 10} className="guide letter"></Box>
+				{this.props.letters.map((v, k) => <Box w={1 / 10} className="guide letter" key={k}>{v}</Box>)}
+				<Box w={1 / 10} className="guide letter"></Box>
+			</Flex>
 		);
 	}
 };

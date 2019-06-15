@@ -5,13 +5,13 @@
 	height: 50px;
 	background: #fff;
 	border: solid 1px #ddd;
+	text-align: center;
 	font-size: 10px;
 	text-shadow: 2px 2px #fff;
 	box-shadow: inset 0px 0px 1px 1px #000000;
 	background: rgb(255, 255, 255);
 	background: radial-gradient(circle, rgba(255, 255, 255, 1) 45%, rgba(0, 0, 0, 0.7) 89%);
 }
-
 
 .boardpiece.even {
 	background: rgb(34, 193, 195);
@@ -24,23 +24,15 @@
 }
 
 pre {
-	display: block;
-	padding: 9.5px;
-	margin: 0 0 10px;
-	font-size: 13px;
-	line-height: 1.428571429;
-	word-break: break-all;
-	word-wrap: break-word;
-	color: #333333;
-	background-color: #f5f5f5;
-	border: 1px solid #cccccc;
-	border-radius: 4px;
-	left: 10%;
-	padding: 10px;
-	border: solid 1px #ddd;
-	width: 150px;
-	height: 150px;
-	position: absolute
+    line-height: 1.428571429;
+    word-break: break-all;
+    word-wrap: break-word;
+    color: #333333;
+    background-color: #f5f5f5;
+    left: 2%;
+    padding: 10px;
+    border: solid 1px #ddd;
+    position: absolute;
 }
 
 pre code {

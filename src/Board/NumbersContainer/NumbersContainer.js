@@ -1,13 +1,20 @@
 import React from 'react';
 
+import { Flex, Box } from 'reflexbox';
+
 class NumbersContainer extends React.Component {
+
+	getClassName = () => {
+		return `guide number ${this.props.side}`;
+	}
+
 	render() {
 		return (
-			<>
-				<div>x</div>
-				{this.props.numbers.map((v, k) => <div className="guide item" key={k}>{v}</div>)}
-				<div>x</div>
-			</>
+			<Flex column>
+				{this.props.numbers.map((v, k) => (
+					<Box auto className={this.getClassName()} key={k}>{v}</Box>
+				))}
+			</Flex>
 		);
 	}
 };

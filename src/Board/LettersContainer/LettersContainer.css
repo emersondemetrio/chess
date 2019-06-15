@@ -1,4 +1,20 @@
 .guide {
-	min-width: 52px;
+	text-transform: uppercase;
+	font-size: 15px;
+	text-align: center;
 	max-width: 52px;
+	min-width: 52px;
+	padding: 10px;
+}
+
+.number {
+	line-height: 52px;
+}
+
+.number.left {
+	text-align: left;
+}
+
+.number.right {
+	text-align: right;
 }

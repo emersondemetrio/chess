@@ -15,22 +15,22 @@ class Piece extends React.Component {
 	}
 
 	getName = () => {
-		return `${this.props.reference.xy} - ${this.props.reference.name}`;
+		return `${this.props.reference.rowItem} - ${this.props.reference.xy} - ${this.props.reference.color} ${this.props.reference.name}`;
 	}
 
 	innerClick = () => {
 		this.props.pieceClick(this.props.reference)
 		this.className = 'kkk';
-		document.getElementById("k").innerHTML = JSON.stringify(this.props.reference, null, 2);
+		document.getElementById("k").innerHTML = JSON.stringify({ ...this.props.reference, id: this.props.reference.id.split('-')[0] }, null, 2);
 	}
 
 	render() {
 		return (
 			<ReactSVG
-				onMouseEnter={e => this.innerClick()}
 				src={this.getImage()}
 				title={this.getName()}
-				className={this.className} />
+				className={this.className}
+				onMouseEnter={e => this.innerClick()} />
 		);
 	}
 };
