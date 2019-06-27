@@ -1,0 +1,45 @@
+.boardpiece {
+	padding: 10px;
+	min-width: 50px;
+	max-width: 50px;
+	height: 50px;
+	background: #fff;
+	border: solid 1px #ddd;
+	text-align: center;
+	font-size: 10px;
+	text-shadow: 2px 2px #fff;
+	box-shadow: inset 0px 0px 1px 1px #000000;
+	background: rgb(255, 255, 255);
+	background: radial-gradient(circle, rgba(255, 255, 255, 1) 45%, rgba(0, 0, 0, 0.7) 89%);
+}
+
+.boardpiece.even {
+	background: rgb(34, 193, 195);
+	background: radial-gradient(circle, rgba(0, 212, 255, 1) 0%, rgba(0, 0, 0, 1) 100%);
+}
+
+.boardpiece.playable {
+	background: rgb(2, 0, 36);
+	background: linear-gradient(327deg, rgba(2, 0, 36, 1) 0%, rgba(13, 16, 22, 1) 6%, rgba(0, 212, 255, 1) 100%);
+}
+
+pre {
+    line-height: 1.428571429;
+    word-break: break-all;
+    word-wrap: break-word;
+    color: #333333;
+    background-color: #f5f5f5;
+    left: 2%;
+    padding: 10px;
+    border: solid 1px #ddd;
+    position: absolute;
+}
+
+pre code {
+	padding: 0;
+	font-size: inherit;
+	color: inherit;
+	white-space: pre-wrap;
+	background-color: transparent;
+	border-radius: 0;
+}

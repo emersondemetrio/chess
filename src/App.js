@@ -1,67 +1,78 @@
 import React from 'react';
 import './App.css';
+import { ReflexProvider, Flex, } from 'reflexbox';
 
-import BoardPiece from './board/BoardPiece';
+import {
+	rawBoard,
+	rawLetters,
+	rawNumbers
+} from './Raw/Board'
+import { getFirstState } from './Raw/Utils';
+
+import BoardPiece from './Board/BoardPiece/BoardPiece';
+import LettersContainer from './Board/LettersContainer/LettersContainer';
+import NumbersContainer from './Board/NumbersContainer/NumbersContainer';
+
+const space = [0, 6, 12, 18, 24]
+const breakpoints = [32, 48, 64]
 
 class App extends React.Component {
 	constructor(props) {
 		super(props);
 
-		const letters = 'abcdefgh'.split('');
-		const numbers = '12345678'.split('').map(v => parseInt(v)).reverse();
+		this.firstState = getFirstState();
 
-		this.table = numbers
-			.map(cNumber => letters
-				.map(letter => ({
-					x: cNumber,
-					y: letter,
-					xy: `[${cNumber}, ${letter}]`
-				}))
-			);
-		const br1 = {
-			color: 'black',
-			name: 'rook'
+		this.state = {
+			board: this.getBoard()
 		};
-
-		const br2 = { ...br1 };
-		const wr1 = { ...br1, color: 'white' };
-		const wr2 = { ...wr1 };
-
-		const firstState = [
-			[br1, null, null, null, null, null, null, br2],
-			[null, null, null, null, null, null, null, null],
-			[null, null, null, null, null, null, null, null],
-			[null, null, null, null, null, null, null, null],
-			[null, null, null, null, null, null, null, null],
-			[null, null, null, null, null, null, null, null],
-			[null, null, null, null, null, null, null, null],
-			[wr1, null, null, null, null, null, null, wr2],
-		];
-
-		this.firstState = firstState;
 	}
 
-	getBoard = () =>
-		this.table.map((row, rowIndex) => (
-			row.map((item, lineIndex) => (
-				<BoardPiece
-					key={item.xy}
-					name={item.xy}
-					piece={this.firstState[rowIndex][lineIndex]}
-					isPlayable={lineIndex % 2 === 0}
-					rowItem={`${rowIndex}, ${lineIndex}`}
-					indexClass={(lineIndex + rowIndex) % 2 === 0 ? 'even' : 'odd'}></BoardPiece>
-			))
-		));
+	getBoard = () => (
+		<Flex column>
+			{rawBoard.map((row, rowIndex) => (
+				<Flex align='center' key={rowIndex}>
+					{row.map((item, lineIndex) => {
+						let piece = this.firstState[rowIndex][lineIndex];
+						const posInfo = rawBoard[rowIndex][lineIndex];
+
+						if (piece !== null) {
+							piece = {
+								...piece,
+								...posInfo,
+								rowItem: [rowIndex, lineIndex]
+							}
+						}
+
+						return <BoardPiece
+							key={item.xy}
+							name={item.xy}
+							piece={piece}
+							isPlayable={false}
+							indexClass={(lineIndex + rowIndex) % 2 === 0 ? 'even' : 'odd'}></BoardPiece>
+					})}
+				</Flex>
+			))}
+		</Flex>
+	);
 
 	render() {
 		return (
-			<div className="App">
-				<h3>Chess!</h3>
-				<section className="board container stretch">
-					{this.getBoard()}
-				</section>
-			</div>
+			<ReflexProvider space={space} breakpoints={breakpoints}>
+				<Flex column align="center">
+					<h3>Chess!</h3>
+					<LettersContainer letters={rawLetters} />
+
+					<Flex className="main-container">
+						<NumbersContainer numbers={rawNumbers} side="right" />
+						{this.state.board}
+						<NumbersContainer numbers={rawNumbers} side="left" />
+					</Flex>
+
+					<LettersContainer letters={rawLetters} />
+
+					<pre><code id="k"></code></pre>
+				</Flex>
+			</ReflexProvider>
 		);
 	}
 }

@@ -1,6 +1,8 @@
 import React from 'react';
 import './BoardPiece.css';
-import Piece from '../piece/Piece';
+import Piece from '../../Piece/Piece';
+
+import { Box } from 'reflexbox';
 
 class BoardPiece extends React.Component {
 	getClassName = () => {
@@ -12,17 +14,24 @@ class BoardPiece extends React.Component {
 		].join(' ');
 	}
 
+	onClick = (piece) => {
+		console.log('piece', piece);
+	}
+
 	render() {
 		return (
-			<div
+			<Box
+				w={1 / 10}
+				align='center'
 				key={this.props.name}
 				className={this.getClassName()}>
+
 				{this.props.piece !== null ? (
 					<Piece
-						color={this.props.piece.color}
-						name={this.props.piece.name}></Piece>
+						pieceClick={this.onClick}
+						reference={this.props.piece}></Piece>
 				) : null}
-			</div>
+			</Box>
 		);
 	}
 };
